@@ -1,0 +1,53 @@
+import java.util.*;
+public class GradeTracker {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+     Scanner sc=new Scanner(System.in);
+     
+     //creating array list to store the grades
+     
+     ArrayList<Integer> grades=new ArrayList<>();
+     
+     System.out.print("Enter the number of subjects: ");
+     int n=sc.nextInt();
+     boolean hasFailed =false;
+     for(int i=0;i<n;i++) {
+    	 System.out.print("Enter the grade for subject "+(i+1)+": ");
+    	 int grade=sc.nextInt();
+    	 if(grade<40) {  
+    		 hasFailed=true;
+    	 }
+    	 grades.add(grade);
+    }
+     double average=calculateAverage(grades);
+     char grade=displayGrade(average,hasFailed);
+     
+     //Display results
+     System.out.println("Averge Grade: "+average);
+     System.out.println("Overall Grade: "+grade);
+    
+	}
+	//calculate average
+
+	private static double calculateAverage(ArrayList<Integer> grades) {
+		int sum=0;
+		for(int x:grades) {
+			sum+=x;
+		}
+		double average=sum/grades.size();
+		return average;
+		
+	}
+	//calculating overall grade
+	private static char displayGrade(double average,boolean hasFailed) {
+	    if(hasFailed) return 'F';
+		else if(average>=90) return 'A';
+		else if (average >= 80) return 'B';
+        else if (average >= 70) return 'C';
+        else if (average >= 60) return 'D';
+        else return 'F';
+	
+	    }
+	 
+}
